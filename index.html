@@ -25,10 +25,27 @@ Email
 </table>
 <br>
 
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+     
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">isim</label>
+      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+      <div class="form-group">
+        <label for="exampleInputPassword1">TC</label>
+        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="TC">
+    <br>
+    <button type="submit" class="btn btn-primary" onclick="addFunction()">Ekle</button>
+  </form>
 
 
 <script>
     myFunction();
+    
 async function  myFunction() {
     var users = await axios.get('http://localhost:8090/listele');
     console.log(users.data);
@@ -40,6 +57,11 @@ async function  myFunction() {
        var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td></tr>';
     table.innerHTML+=tt;
   }
+
+ }
+ 
+ function addFunction(){
+    console.log('addada');
 
  }
 

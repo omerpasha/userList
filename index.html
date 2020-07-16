@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+    <title>Users</title>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+
+
+<table id="Users" class="table table-dark">
+<tr>
+    <th>
+    İsim
+</th>
+<th>
+Email
+</th>
+<th>
+    Tc
+</th>
+</tr>
+</table>
+<br>
+
+
+
+<script>
+    myFunction();
+async function  myFunction() {
+    var users = await axios.get('http://localhost:8090/listele');
+    console.log(users.data);
+    
+  var table = document.getElementById("Users");
+  
+  for (i = 0; i < users.data.length; i++){
+       
+       var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td></tr>';
+    table.innerHTML+=tt;
+  }
+
+ }
+
+</script>
+
+</body>
+</html>

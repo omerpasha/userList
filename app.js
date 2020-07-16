@@ -6,7 +6,7 @@ var cors = require('cors');
 var path = require('path');
 
 app.use(cors());
-
+//omeraddasdsa
 app.get('/listele', function (req, res) {
     fs.readFile('users.json','utf-8',function(err,data){
         res.send(data)

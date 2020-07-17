@@ -1,0 +1,45 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+    <title>ekle</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <form id ="listeleme">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Enter email">
+         
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">isim</label>
+          <input type="email" class="form-control" id="isim" placeholder="İsim">
+    
+          <div class="form-group">
+            <label for="exampleInputPassword1">TC</label>
+            <input type="email" class="form-control" id="tc" placeholder="TC">
+        <br>
+        <button type="submit" class="btn btn-primary" onclick="addRecord()">Ekle</button>
+      </form>
+    
+</body>
+<script>
+    
+
+
+async function addRecord(){
+  
+    let kullanici={};
+      kullanici.isim=document.getElementById("isim").value;
+      kullanici.email=document.getElementById("mail").value;
+      kullanici.tc=document.getElementById("tc").value;
+      console.log(kullanici)
+      await axios.post('http://localhost:8090/kullaniciEkle',kullanici);
+}
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>
+    Login
+</title>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="text" id="isim"/>
+    <input type="text" id="tc"/>
+    
+    <button id="kontrol" onclick="myFunction()">Giriş Yap</button>
+
+<script>
+
+async function  myFunction() {
+    var users = await axios.get('http://localhost:8090/listele');
+    var isim=document.getElementById("isim").value;
+    var tc=document.getElementById("tc").value;
+
+    
+  
+  for (i = 0; i < users.data.length; i++){
+       
+      if(users.data[i].isim==isim&&users.data[i].tc==tc){
+          
+        location.replace("http://localhost:8090/");
+      }else{
+          
+          alert('girilemedi...');
+      }
+    
+  }
+
+ }
+
+
+</script>
+</body>
+
+</html>

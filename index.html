@@ -25,45 +25,43 @@ Email
 </table>
 <br>
 
-<form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-     
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">isim</label>
-      <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password">
 
-      <div class="form-group">
-        <label for="exampleInputPassword1">TC</label>
-        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="TC">
-    <br>
-    <button type="submit" class="btn btn-primary" onclick="addFunction()">Ekle</button>
-  </form>
 
 
 <script>
     myFunction();
-    
+    var users;
 async function  myFunction() {
-    var users = await axios.get('http://localhost:8090/listele');
+    users = await axios.get('http://localhost:8090/listele');
     console.log(users.data);
     
   var table = document.getElementById("Users");
   
   for (i = 0; i < users.data.length; i++){
        
-       var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td></tr>';
+
+    var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td><td><button id="edit">edit</button></td><td><button id="delete" onClick="deleteRecord()">delete</button></td></tr>';
     table.innerHTML+=tt;
   }
 
  }
  
- function addFunction(){
-    console.log('addada');
+ async function deleteRecord(tc){
+     console.log(tc);
 
- }
+        console.log(users);
+     
+        for(var i=0;i<users.data.length;i++){
+    
+            if(users.data[i].tc==tc){
+                
+                await axios.delete('http://localhost:8090/delete',kullanici);
+                
+            }
+    
+        }
+ 
+}
 
 </script>
 

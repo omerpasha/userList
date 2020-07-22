@@ -33,15 +33,11 @@ Email
     var users;
 async function  myFunction() {
     users = await axios.get('http://localhost:8090/listele');
-
-    console.log(users.data);
     
   var table = document.getElementById("Users");
   
   for (i = 0; i < users.data.length; i++){
-       
-
-    var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td><td><button id="edit" onClick="editFunction('+tc+')">edit</button></td><td><button id="delete" onClick="deleteRecord('+users.data[i].tc+')">delete</button></td></tr>';
+    var tt='<tr><td>'+users.data[i].isim+'</td><td>'+users.data[i].email+'</td><td>'+users.data[i].tc+'</td><td><button id="edit" onClick="editFunction('+users.data[i].tc+')">edit</button></td><td><button id="delete" onClick="deleteRecord('+users.data[i].tc+')">delete</button></td></tr>';
     table.innerHTML+=tt;
   }
 
@@ -52,12 +48,13 @@ async function  myFunction() {
      console.log(tc);
      console.log('2');
 
-        console.log(users);
+        console.log(users.data);
         for(var i=0;i<users.data.length;i++){
-    
+
             if(users.data[i].tc==tc){
-                
-                await axios.delete('http://localhost:8090/delete',users.data[i]);
+                console.log(i)
+                console.log(users.data[i])
+                await axios.delete('http://localhost:8090/delete/',users.data[i]);
                 
             }
     

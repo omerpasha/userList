@@ -1,5 +1,6 @@
 /*gereklilikler eklendi*/ 
 var express = require('express');
+var db=require('./db.js');
 var app = express();
 var fs=require('fs');
 var url=require('url');
@@ -12,6 +13,7 @@ var path = require('path');
 app.use(cors());//cors hatasını gidermek için
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
+// const { INSERT } = require('sequelize/types/lib/query-types');
 
  var users;
 
@@ -20,17 +22,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /*kullanıcıları listelemek için*/
 app.get('/listele', function (req, res) {
-     fs.readFile('users.json','utf-8',function(err,data){
-        res.send(data);
-        console.log(data);
+    
+const sqlite3=require('sqlite3').verbose();
+    
+    let db=new sqlite3.Database('./kayıtlar.db');
 
-       users=data;
+    let sql='SELECT * FROM kullanicilar';
 
+    db.all(sql,[],(err,rows)=>{
+        if(err){
+            console.log(err.message);
+
+        }
+        users = rows;
+        
+        res.send(users)
     });
+    db.close();
+
 });
 app.delete('/delete',function(req,res){
+       // db.delete_user(req.param);
+    console.log(req.body);
 
-        console.log(req.body);
+
 });
 
 app.put('/kullaniciDuzenle',function(req,res){
@@ -65,7 +80,11 @@ app.put('/kullaniciDuzenle',function(req,res){
 
 
 app.post('/kullaniciEkle', function (req, res) {   
-    console.log(req.body);
+    db.insert_user(req.body);
+ 
+
+
+   // console.log(req.body);
 });
     
 app.get('/ekle',function(req,res){

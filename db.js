@@ -28,20 +28,22 @@ db.close();
 
 }
 
-module.exports.delete_user=(tc)=>{
-    openDb();
-    db.run('DELETE from kullanicilar where tc ='+tc+')',function(err,row){
+module.exports.delete_user=(user)=>{
+   console.log(user);
+     console.log('delete user db.js');
+     openDb();
+     db.run('DELETE from kullanicilar where tc ='+user.tc),function(err,row){
 
 
-    if(err){
-            console.log(err.message);
-        }
+     if(err){
+             console.log(err.message);
+         }
 
-        console.log('1 row is deleted');
+         console.log('1 row is deleted');
 
-});
+ };
 
-db.close();
+ db.close();
 
 }
 

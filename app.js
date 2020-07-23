@@ -1,13 +1,17 @@
 /*gereklilikler eklendi*/ 
 var express = require('express');
+const Sequelize=require('sequelize');
+
+module.exports=db;
 var db=require('./db.js');
 var app = express();
 var fs=require('fs');
 var url=require('url');
 var cors = require('cors');
 var path = require('path');
+//var orm=require('./orm');
 
-
+var models=require('./schema');
 
 
 app.use(cors());//cors hatasını gidermek için
@@ -41,9 +45,10 @@ const sqlite3=require('sqlite3').verbose();
     db.close();
 
 });
-app.delete('/delete',function(req,res){
-       // db.delete_user(req.param);
-    console.log(req.body);
+app.post('/delete',function(req,res){
+    
+       db.delete_user(req.body);
+    //console.log(req.body);
 
 
 });

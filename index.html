@@ -54,7 +54,7 @@ async function  myFunction() {
             if(users.data[i].tc==tc){
                 console.log(i)
                 console.log(users.data[i])
-                await axios.delete('http://localhost:8090/delete/',users.data[i]);
+                await axios.post('http://localhost:8090/delete/',users.data[i]);
                 
             }
     

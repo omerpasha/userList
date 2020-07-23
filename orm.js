@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const port = 9999;
-
+console.log('orm');
 app.get('/', (req, res) => res.send('Notes App'));
 
-app.listen(port, () => console.log(`notes-app listening on port ${port}!`));const Sequelize = require('sequelize');
+app.listen(port, () => console.log(`notes-app listening on port ${port}!`));
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
   // The `host` parameter is required for other databases
